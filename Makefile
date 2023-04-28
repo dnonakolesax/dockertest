@@ -1,8 +1,6 @@
 .PHONY: build run test coverage linter
 
 build:
-	apt install libgtest-dev
-	apt install lcov
 	mkdir build
 	mkdir log
 	
