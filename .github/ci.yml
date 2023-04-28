@@ -1,0 +1,23 @@
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: dnonakolesax/samplecpp:latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: make build
+
+  test:
+    runs-on: ubuntu-latest
+    container: dnonakolesax/samplecpp
+    needs: [build]
+    steps:
+    - uses: actions/checkout@v2
+    - run: make build && make test  
+  coverage:
+    runs-on: ubuntu-latest
+    container: dnonakolesax/samplecpp
+    needs: [test]
+    steps:
+    - uses: actions/checkout@v2
+    - run: make build && make coverage

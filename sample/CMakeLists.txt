@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 3.0.0)
+project(sample)
+
+set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-lm -g -O0 -Wall -W -fprofile-arcs -ftest-coverage")
+set(SAMPLE_LIBRARIES)
+set(SAMPLE_INCLUDE_DIRS)
+
+file(GLOB SOURCES *.cpp)
+file(GLOB INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR})
+
+add_library(${PROJECT_NAME} STATIC ${SOURCES})
+
+set(SAMPLE_LIBRARIES ${PROJECT_NAME} PARENT_SCOPE)
+set(SAMPLE_INCLUDE_DIRS ${INCLUDE_DIRS} PARENT_SCOPE)
