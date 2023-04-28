@@ -5,6 +5,7 @@ build:
 	mkdir log
 	
 run:
+	@echo "RUN"
 	@cd build && cmake .. > cmakelog.txt && make > makelog.txt && ./dockertest
 	@rm -r build
 
