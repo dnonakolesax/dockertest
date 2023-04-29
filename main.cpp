@@ -19,7 +19,6 @@ int main(int argc, char* argv[]) {
             std::cout << field.c_str() << '\t';
         std::cout << '\n';
     }
-
-  //  std::cout << evenOdd (11) << std::endl;
+    conn.close();
     return 0;
 }
