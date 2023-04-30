@@ -7,61 +7,73 @@
 
 using json = nlohmann::json;
 
-bool tryDB () {
-    try {
-    pqxx::connection conn("dbname=postgres user=habrpguser password=pgpwd4habr \
+bool tryDB()
+{
+    try
+    {
+        pqxx::connection conn("dbname=postgres user=habrpguser password=pgpwd4habr \
                    	host=postgres port=5432");
-   // pqxx::connection conn("dbname=postgres user=habrpguser password=pgpwd4habr \
+        // pqxx::connection conn("dbname=postgres user=habrpguser password=pgpwd4habr \
      //               	host=172.19.0.2 port=5432");
-                        
-    std::string sql = "CREATE DATABASE uzbek;";
-    pqxx::nontransaction query(conn, sql);
 
-    pqxx::result r = query.exec(sql);
+        std::string sql = "CREATE DATABASE uzbek;";
+        pqxx::nontransaction query(conn, sql);
 
-    std::cout << "uzbek" << std::endl;
+        pqxx::result r = query.exec(sql);
 
-    pqxx::connection conn2("dbname=uzbek user=habrpguser password=pgpwd4habr \
+        std::cout << "uzbek" << std::endl;
+
+        pqxx::connection conn2("dbname=uzbek user=habrpguser password=pgpwd4habr \
                     	host=postgres port=5432");
 
-    std::ifstream sqlfile("../drop/db.sql");
+        std::ifstream sqlfile("../drop/db.sql");
 
-    std::stringstream buffer;
+        std::stringstream buffer;
 
-    buffer << sqlfile.rdbuf();
+        buffer << sqlfile.rdbuf();
 
-    std::string sql2 = buffer.str();
+        std::string sql2 = buffer.str();
 
-    pqxx::nontransaction txn(conn2);                   
+        pqxx::nontransaction txn(conn2);
 
-    pqxx::result r2 = txn.exec(sql2);
+        pqxx::result r2 = txn.exec(sql2);
     }
-    catch (std::exception const &e) {
+    catch (std::exception const &e)
+    {
         std::cerr << e.what() << std::endl;
     }
     return true;
 }
 
-void connectDB () {
-    
-    std::ifstream f("../drop/config.json");
+void connectDB()
+{
+    try
+    {
+        std::ifstream f("../drop/config.json");
 
-    json data = json::parse(f);
+        json data = json::parse(f);
 
-   std::string hostName = data["host"];
+        std::string hostName = data["host"];
 
-    std::string connConfig = "dbname=uzbek user=habrpguser password=pgpwd4habr host=" + hostName + " port=5432";
+        std::string connConfig = "dbname=uzbek user=habrpguser password=pgpwd4habr host=" + hostName + " port=5432";
 
-    pqxx::connection conn2(connConfig);
+        pqxx::connection conn2(connConfig);
 
-    pqxx::work txn(conn2);                   
+        pqxx::work txn(conn2);
 
-    pqxx::result r = txn.exec("SELECT * FROM testdocker.example");
+        pqxx::result r = txn.exec("SELECT * FROM testdocker.example");
 
-   for (auto const &row: r) {
-        for (auto const &field: row) std::cout << field.c_str() << '\t';
-        std::cout << '\n';
+        for (auto const &row : r)
+        {
+            for (auto const &field : row)
+                std::cout << field.c_str() << '\t';
+            std::cout << '\n';
+        }
+
+        txn.commit();
     }
-
-    txn.commit();
+    catch (std::exception const &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
 }
