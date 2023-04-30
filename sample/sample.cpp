@@ -2,7 +2,7 @@
 #include <pqxx/pqxx>
 
 bool tryDB () {
-    pqxx::connection conn("dbname=testdocker user=habrpguser password=pgpwd4habr \
+    /*pqxx::connection conn("dbname=testdocker user=habrpguser password=pgpwd4habr \
                    	hostaddr=172.19.0.2 port=5432");
 
     pqxx::work txn(conn);
@@ -22,6 +22,6 @@ bool tryDB () {
     //     std::cout << '\n';
     // }
 
-    conn.close();
+    conn.close();*/
     return true;
 }
