@@ -3,6 +3,9 @@
 #include <pqxx/pqxx>
 #include <fstream>
 #include <sstream>
+#include <json.hpp>
+
+using json = nlohmann::json;
 
 bool tryDB () {
     try {
@@ -40,8 +43,16 @@ bool tryDB () {
 }
 
 void connectDB () {
-    pqxx::connection conn2("dbname=uzbek user=habrpguser password=pgpwd4habr \
-                    	host=postgres port=5432");
+    
+    std::ifstream f("../drop/config.json");
+
+    json data = json::parse(f);
+
+   std::string hostName = data["host"];
+
+    std::string connConfig = "dbname=uzbek user=habrpguser password=pgpwd4habr host=" + hostName + " port=5432";
+
+    pqxx::connection conn2(connConfig);
 
     pqxx::work txn(conn2);                   
 

@@ -6,6 +6,7 @@ set (CMAKE_CXX_STANDARD 20)
 find_library(PQXX_LIB pqxx REQUIRED)
 find_library(PQ_LIB pq REQUIRED)
 
+add_subdirectory(nlohmann)
 add_subdirectory(sample)
 
 add_executable(${PROJECT_NAME} main.cpp)

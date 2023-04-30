@@ -1,6 +1,6 @@
 {
-    "host": "postgres",
+    "host": "docker",
     "user": "habrpguser",
     "password": "pgpwd4habr",
     "database": "uzbek"
-  }
+}
