@@ -2,8 +2,9 @@
 #include <pqxx/pqxx>
 
 bool tryDB () {
+    try {
     pqxx::connection conn("dbname=testdocker user=habrpguser password=pgpwd4habr \
-                   	hostaddr=postgres port=5432");
+                   	hostaddr=localhost port=5432");
 
     pqxx::work txn(conn);
 
@@ -22,6 +23,9 @@ bool tryDB () {
     //     std::cout << '\n';
     // }
 
-    conn.close();
+    conn.close();}
+    catch (const pqxx::pqxx_exception &e) {
+        std::cerr << e.base().what() << std::endl;
+    }
     return true;
 }

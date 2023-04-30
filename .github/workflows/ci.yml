@@ -17,12 +17,14 @@ jobs:
         image: postgres:latest
         ports: ["5432:5432"]
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-        networks: db_network
+        env:
+          POSTGRES_USER: 'habrpguser'
+          POSTGRES_PASSWORD: 'pgpwd4habr'
+          POSTGRES_BD: 'testdocker'
+          POSTGRES_HOST: localhost
 
     steps:
     - uses: actions/checkout@v3
-    - run: docker network create db_network
-    - run: docker network inspect db_network
     - run: make build && make test  
 
   coverage:
