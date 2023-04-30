@@ -21,8 +21,6 @@ bool tryDB()
 
         pqxx::result r = query.exec(sql);
 
-        std::cout << "uzbek" << std::endl;
-
         pqxx::connection conn2("dbname=uzbek user=habrpguser password=pgpwd4habr \
                     	host=postgres port=5432");
 
@@ -63,12 +61,12 @@ void connectDB()
 
         pqxx::result r = txn.exec("SELECT * FROM testdocker.example");
 
-        for (auto const &row : r)
-        {
-            for (auto const &field : row)
-                std::cout << field.c_str() << '\t';
-            std::cout << '\n';
-        }
+        // for (auto const &row : r)
+        // {
+        //     for (auto const &field : row)
+        //         std::cout << field.c_str() << '\t';
+        //     std::cout << '\n';
+        // }
 
         txn.commit();
     }
