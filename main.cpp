@@ -4,6 +4,6 @@
 #include <pqxx/pqxx>
 
 int main(int argc, char* argv[]) {
-    tryDB();
+    connectDB();
     return 0;
 }
