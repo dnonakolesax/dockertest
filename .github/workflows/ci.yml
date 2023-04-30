@@ -10,7 +10,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container: dnonakolesax/dbcpp
-    services: postgres:latest
     needs: [build]
     services:
     image: postgres
