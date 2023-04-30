@@ -31,6 +31,17 @@ jobs:
     runs-on: ubuntu-latest
     container: dnonakolesax/dbcpp
     needs: [test]
+
+    services:
+      postgres:
+        image: postgres:latest
+        ports: ["5432:5432"]
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        env:
+          POSTGRES_USER: 'habrpguser'
+          POSTGRES_PASSWORD: 'pgpwd4habr'
+          POSTGRES_BD: 'testdocker'
+          
     steps:
     - uses: actions/checkout@v3
     - run: make build && make coverage
