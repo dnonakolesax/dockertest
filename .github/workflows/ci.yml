@@ -22,10 +22,13 @@ jobs:
           POSTGRES_USER: 'habrpguser'
           POSTGRES_PASSWORD: 'pgpwd4habr'
           POSTGRES_BD: 'testdocker'
-        command: ["createdb -U habrpguser testdump", "psql -U habrpguser testdump < drop/db.sql"]   
+        steps:  
+          run: createdb -U habrpguser testdump
 
     steps:
     - uses: actions/checkout@v3
+    - run: createdb -U habrpguser testdump
+    - run: psql -U habrpguser testdump < drop/db.sql
     - run: make build && make test  
 
   coverage:
