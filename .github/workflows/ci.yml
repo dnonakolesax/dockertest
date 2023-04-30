@@ -1,8 +1,5 @@
 on: push
 
-env:
-  DB_HOST: localhost
-
 jobs:
   build:
     runs-on: ubuntu-latest
