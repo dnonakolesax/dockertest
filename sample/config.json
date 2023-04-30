@@ -1,0 +1,6 @@
+{
+    "host": "postgres",
+    "user": "habrpguser",
+    "password": "pgpwd4habr",
+    "database": "uzbek"
+  }

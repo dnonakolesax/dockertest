@@ -5,8 +5,7 @@
 
 TEST (sample_test, sample_test) {
     EXPECT_EQ(tryDB(), true);
-    //connectDB();
-    std::cout << "complete" << std::endl;
+    connectDB();
 }
 
 int main(int argc, char** argv) {
