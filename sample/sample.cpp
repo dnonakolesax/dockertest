@@ -6,7 +6,7 @@
 
 bool tryDB () {
     try {
-    pqxx::connection conn("dbname=testdocker user=habrpguser password=pgpwd4habr \
+    pqxx::connection conn("dbname=postgres user=habrpguser password=pgpwd4habr \
                    	host=postgres port=5432");
    // pqxx::connection conn("dbname=postgres user=habrpguser password=pgpwd4habr \
      //               	host=172.19.0.2 port=5432");
