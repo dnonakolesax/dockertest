@@ -45,11 +45,12 @@ ALTER TABLE testdocker.example OWNER TO habrpguser;
 -- Data for Name: example; Type: TABLE DATA; Schema: testdocker; Owner: habrpguser
 --
 
-COPY testdocker.example (id, text) FROM stdin;
-1       uzbek
-2       tadjik
-3       kirgiz
-\.
+INSERT INTO testdocker.example VALUES
+('1', 'uzbek'),
+('2','tadjik'),
+('3','kirgiz'),
+('4', 'turkmen');
+
 
 
 --

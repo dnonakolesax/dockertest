@@ -25,7 +25,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - run: docker ps -a
     - run: createdb -U habrpguser testdump
     - run: psql -U habrpguser testdump < drop/db.sql
     - run: make build && make test  
