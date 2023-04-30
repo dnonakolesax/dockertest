@@ -4,14 +4,14 @@ jobs:
     runs-on: ubuntu-latest
     container: dnonakolesax/dbcpp:latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - run: make build
 
   test:
     runs-on: ubuntu-latest
     container: dnonakolesax/dbcpp
     needs: [build]
-    
+
     services:
      image: postgres
      env:
@@ -23,7 +23,7 @@ jobs:
      options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - run: make build && make test  
 
   coverage:
@@ -31,5 +31,5 @@ jobs:
     container: dnonakolesax/dbcpp
     needs: [test]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - run: make build && make coverage
