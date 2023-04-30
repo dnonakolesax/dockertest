@@ -6,20 +6,20 @@
 
 bool tryDB () {
     try {
-    //pqxx::connection conn("dbname=testdocker user=habrpguser password=pgpwd4habr \
-    //                	host=postgres port=5432");
-    // pqxx::connection conn("dbname=postgres user=habrpguser password=pgpwd4habr \
-    //                 	host=172.19.0.2 port=5432");
+    pqxx::connection conn("dbname=testdocker user=habrpguser password=pgpwd4habr \
+                   	host=postgres port=5432");
+    pqxx::connection conn("dbname=postgres user=habrpguser password=pgpwd4habr \
+                    	host=172.19.0.2 port=5432");
                         
-    // std::string sql = "CREATE DATABASE uzbek;";
-    // pqxx::nontransaction query(conn, sql);
+    std::string sql = "CREATE DATABASE uzbek;";
+    pqxx::nontransaction query(conn, sql);
 
-    // pqxx::result r = query.exec(sql);
+    pqxx::result r = query.exec(sql);
 
-    // std::cout << "uzbek" << std::endl;
+    std::cout << "uzbek" << std::endl;
 
     pqxx::connection conn2("dbname=uzbek user=habrpguser password=pgpwd4habr \
-                    	host=172.19.0.2 port=5432");
+                    	host=postgres port=5432");
 
     std::ifstream sqlfile("../drop/db.sql");
 
@@ -41,7 +41,7 @@ bool tryDB () {
 
 void connectDB () {
      pqxx::connection conn2("dbname=uzbek user=habrpguser password=pgpwd4habr \
-                    	host=172.19.0.2 port=5432");
+                    	host=postgres port=5432");
 
     pqxx::work txn(conn2);                   
 
