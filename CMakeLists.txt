@@ -13,7 +13,7 @@ add_executable(${PROJECT_NAME} main.cpp)
 
 target_link_libraries(dockertest PUBLIC ${PQXX_LIB} ${PQ_LIB})
 
-set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-lm -g -O0 -Wall -fprofile-arcs -ftest-coverage -Llibs -lpq -lpqxx")
+#set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-lm -g -O0 -Wall -fprofile-arcs -ftest-coverage -Llibs -lpq -lpqxx")
 
 set(CMAKE_EXE_LINKER_FLAGS "-fprofile-arcs -ftest-coverage")
 

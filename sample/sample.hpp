@@ -1,1 +1,1 @@
-bool evenOdd (int number);
+bool tryDB ();
