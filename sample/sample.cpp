@@ -7,6 +7,10 @@ bool tryDB () {
 
     pqxx::work txn(conn);
 
+    if (!conn.is_open()) {
+        return false;
+    }
+
     std::string sql = "SELECT * FROM testdocker.example";
     pqxx::result r = txn.exec(sql);
 
