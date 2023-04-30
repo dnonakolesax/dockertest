@@ -21,7 +21,7 @@ jobs:
           POSTGRES_USER: 'habrpguser'
           POSTGRES_PASSWORD: 'pgpwd4habr'
           POSTGRES_BD: 'testdocker'
-          POSTGRES_HOST: localhost
+          POSTGRES_HOST: '127.0.0.1'
 
     steps:
     - uses: actions/checkout@v3
