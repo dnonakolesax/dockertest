@@ -61,12 +61,6 @@ void connectDB()
 
         pqxx::result r = txn.exec("SELECT * FROM testdocker.example");
 
-        // for (auto const &row : r)
-        // {
-        //     for (auto const &field : row)
-        //         std::cout << field.c_str() << '\t';
-        //     std::cout << '\n';
-        // }
 
         txn.commit();
     }
